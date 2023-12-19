@@ -4,7 +4,7 @@ defmodule DungeonCrawl.CLI.RoomActionsChoice do
 
   def start(room) do
     room_actions = room.actions
-    find_action_by_index = &(Enum.at(room_actions, &1))
+    find_action_by_index = &Enum.at(room_actions, &1)
 
     Shell.info(room.description)
 
@@ -12,7 +12,7 @@ defmodule DungeonCrawl.CLI.RoomActionsChoice do
       room_actions
       |> display_options
       |> generate_question
-      |> Shell.prompt
+      |> Shell.prompt()
       |> parse_answer
       |> find_action_by_index.()
 

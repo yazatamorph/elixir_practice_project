@@ -7,6 +7,7 @@ defmodule DungeonCrawl.CLI.BaseCommands do
     |> Enum.each(fn {option, index} ->
       Shell.info("#{index} - #{option}")
     end)
+
     options
   end
 
@@ -19,5 +20,4 @@ defmodule DungeonCrawl.CLI.BaseCommands do
     {option, _} = Integer.parse(answer)
     option - 1
   end
-
 end

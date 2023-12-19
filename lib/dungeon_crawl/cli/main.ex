@@ -10,7 +10,11 @@ defmodule DungeonCrawl.CLI.Main do
   defp crawl(%{hit_points: 0}, _) do
     Shell.prompt("")
     Shell.cmd("clear")
-    Shell.info("Weakness overcomes you, and you stumble to the ground as your last drams of blood spill to form a puddle around your broken body.")
+
+    Shell.info(
+      "Weakness overcomes you, and you stumble to the ground as your last drams of blood spill to form a puddle around your broken body."
+    )
+
     Shell.info("The world spins away into merciful blackness...")
     Shell.info("YOU DIED")
     Shell.prompt("")
@@ -24,8 +28,8 @@ defmodule DungeonCrawl.CLI.Main do
     Shell.info(DungeonCrawl.Character.current_stats(character))
 
     rooms
-    |> Enum.random
-    |> DungeonCrawl.CLI.RoomActionsChoice.start
+    |> Enum.random()
+    |> DungeonCrawl.CLI.RoomActionsChoice.start()
     |> trigger_action(character)
     |> handle_action_result
   end
@@ -37,6 +41,7 @@ defmodule DungeonCrawl.CLI.Main do
 
   defp handle_action_result({_, :exit}),
     do: Shell.info("The experience will haunt you, but you managed to escape. Congratulations.")
+
   defp handle_action_result({character, _}),
     do: crawl(character, DungeonCrawl.Room.all())
 
